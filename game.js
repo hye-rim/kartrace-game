@@ -101,6 +101,7 @@ function start(lv) {
 function finishRace() {
   state = 'over'; $('ctls').classList.add('hidden');
   const rank = L.rankOf(G, 0), me = G.karts[0];
+  if (!tut && window.arcadeRun) arcadeRun({ level, bad: rank >= 4 });            // 연패 구제(로비): 4등 이하면 나쁜 판
   if (level === 'normal' && !tut && rank === 1) { wins++; store.set('kartraceWins', String(wins)); }
   setTimeout(() => {
     if (state !== 'over') return;
